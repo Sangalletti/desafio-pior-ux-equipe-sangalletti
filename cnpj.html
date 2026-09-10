@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="estilos.css">
+    <title>CNPJ / CPF / CNE / CNH</title>
+</head>
+<body class="portal">
+    <main class="form-box">
+        <h1>consultar cnpj</h1>
+        <p style="font-size:8px">Razão social primeiro. CNPJ depois. Ou o contrário, o validador decide depois do envio.</p>
+        <form id="f">
+            <label>Razão social (só MAIÚSCULAS, senão vira minúsculas)</label>
+            <input id="razao" type="text">
+            <label>CNPJ (com pontuação errada)</label>
+            <input id="cnpj" placeholder="00.000.000/0000-00" >
+            <label>Quantidade de sócios (slider de 0 a 1)</label>
+            <input id="socios" type="range" min="0" max="1" step="0.01" value="0.37">
+            <p id="socios-v" style="font-size:9px"></p>
+            <label>Arquivo do cartão CNPJ (aceita .exe)</label>
+            <input id="arq" type="file" accept=".exe,.bat,.zip">
+            <button type="submit">Enviar para análise humana (não há humanos)</button>
+        </form>
+        <p id="msg" class="erro"></p>
+        <p class="tiny-real"><a href="cpf.html">queria CPF</a> · <a href="painel.html">painel</a></p>
+    </main>
+    <script src="antiux.js"></script>
+    <script>
+        const razao = document.getElementById("razao");
+        razao.addEventListener("input", () => {
+            razao.value = razao.value.toLowerCase();
+        });
+        const sl = document.getElementById("socios");
+        const sv = document.getElementById("socios-v");
+        sl.oninput = () => { sv.textContent = "Sócios: " + (sl.value * 100).toFixed(0) + " (máx. 1)"; };
+        sl.oninput();
+
+        document.getElementById("f").onsubmit = function (e) {
+            e.preventDefault();
+            const c = document.getElementById("cnpj").value.replace(/\D/g, "");
+            const msg = document.getElementById("msg");
+            if (c.length === 14) {
+                msg.textContent = "Formato correto demais. Use pontos no lugar das barras.";
+                return;
+            }
+            if (!razao.value) {
+                msg.textContent = "Razão social vazia. Preencha e veremos ela virar minúscula.";
+                return;
+            }
+            sessionStorage.setItem("tipo", "CNPJ");
+            sessionStorage.setItem("doc", c || "00");
+            antiUX.loading(3000, () => location.href = "protocolo.html");
+        };
+        antiUX.sessao(65);
+    </script>
+</body>
+</html>

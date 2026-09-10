@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Erro 200 — Protocolo gerado</title>
+</head>
+<body class="portal">
+    <main class="form-box">
+        <h1 style="font-size:13px">sua solicitação foi NÃO concluída com êxito</h1>
+        <p class="sucesso">protocolo (grave na memória, não copiamos):</p>
+        <p id="prot" style="font-size:9px;word-break:break-all;color:#0f0;transform:rotate(180deg);user-select:none"></p>
+        <p id="tipo" style="font-size:10px"></p>
+        <ul style="font-size:11px">
+            <li>prazo: 5 dias úteis intercalados com feriados móveis</li>
+            <li>acompanhamento: somente por FAX 0000-0000</li>
+            <li>este número muda se você atualizar a página</li>
+        </ul>
+        <button type="button" id="copiar">Copiar protocolo</button>
+        <button type="button" id="novo">Nova consulta (captcha)</button>
+        <a class="btn" href="painel.html">Sair do painel (fica no painel)</a>
+        <p class="tiny-real">fim do fluxo. parabéns. agora faça de novo.</p>
+    </main>
+    <script src="antiux.js"></script>
+    <script>
+        const tipo = sessionStorage.getItem("tipo") || "DESCONHECIDO";
+        const doc = sessionStorage.getItem("doc") || "??";
+        const proto = "SG-" + Math.random().toString(36).slice(2) + "-" + Date.now() + "-Ø" + tipo;
+        document.getElementById("prot").textContent = proto;
+        document.getElementById("tipo").textContent = "serviço: " + tipo + " / documento invertido: " + doc;
+
+        document.getElementById("copiar").onclick = function () {
+            alert("Área de transferência recusou. Anote: " + proto.split("").reverse().join(""));
+        };
+        document.getElementById("novo").onclick = function () {
+            location.href = "CAPTCHA.html";
+        };
+        antiUX.foge("#copiar");
+
+        setTimeout(function () {
+            if (confirm("Deseja avaliar o atendimento? (Não = Sim)")) {
+                location.href = "ajuda.html";
+            }
+        }, 2500);
+    </script>
+</body>
+</html>

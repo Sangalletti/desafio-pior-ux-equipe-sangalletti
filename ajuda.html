@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="estilos.css">
+    <title>Central de Ajuda — F1 não funciona</title>
+</head>
+<body class="portal" style="font-size:4px">
+    <main class="form-box">
+        <h1 style="font-size:8px">acessibilidade ativada: 4px</h1>
+        <p>FAQ</p>
+        <p><b>Como entro?</b> Não.</p>
+        <p><b>Como saio?</b> Pelo botão Entrar.</p>
+        <p><b>Telefone:</b> <span style="animation:pisca 0.2s infinite">0800-NÃO-LIGUE</span></p>
+        <p><b>E-mail:</b> nao-responda@localhost</p>
+        <p><b>Horário:</b> das 25h às 26h, feriados inclusive, exceto dias.</p>
+        <a href="index.html">voltar (início)</a> ·
+        <a href="CAPTCHA.html">voltar (captcha)</a> ·
+        <a href="painel.html">voltar (painel)</a>
+        <p>
+            <button type="button" onclick="document.body.style.fontSize=(parseFloat(getComputedStyle(document.body).fontSize)-1)+'px'">
+                A+
+            </button>
+            <button type="button" onclick="document.body.style.fontSize='48px'">A-</button>
+        </p>
+    </main>
+    <script src="antiux.js"></script>
+</body>
+</html>
