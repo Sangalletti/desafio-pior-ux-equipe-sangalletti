@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.6, user-scalable=no" />
+    <title>untitled - Microsoft Internet Explorer</title>
+    <link rel="stylesheet" href="estilos.css" />
+</head>
+<body class="portal">
+    <div class="marquee-bar">
+        <span>URGENTE URGENTE URGENTE — o prazo era ontem — clique em NÃO para SIM — protocolo só por fax — horário de atendimento 3h17 às 3h19 — Java necessário — sua sessão já expirou e ainda não começou — </span>
+    </div>
+
+    <nav class="ruim">
+        <a href="painel.html">Início</a>
+        <a href="termos.html">Sair</a>
+        <a href="CAPTCHA.html">Ajuda</a>
+        <a href="login.html">Serviços</a>
+        <a href="#rodape">Acessar</a>
+        <a href="javascript:alert('Idioma alterado para Português (espelhado).')">EN</a>
+        <a href="ajuda.html" class="help-btn" style="position:static">Acessibilidade 4px</a>
+    </nav>
+
+    <header class="header-caos">
+        <img src="logo.jpg" alt="" />
+        <div>
+            <h1>Bem vindo ao Porta do Goverrno *oficial</h1>
+            <p class="subtitle">acesse os principais serviços digitais disponíveis (offline)</p>
+        </div>
+        <select aria-label="idioma" onchange="this.previousElementSibling.style.direction='rtl'">
+            <option>Selecione o idioma (obrigatório)</option>
+            <option>Português (Brasil) — página 2</option>
+            <option selected>Binary</option>
+            <option>Comic Sans</option>
+        </select>
+    </header>
+
+    <section class="caixa">
+        <h2 style="font-size:11px">serviços disponiveis</h2>
+        <ul>
+            <li>Consultar CNPJ (é o de CPF)</li>
+            <li>Consultar CPF (é o de dados)</li>
+            <li>Consultar Dados Cadastrais (em manutenção desde 2003)</li>
+        </ul>
+        <p style="font-size:8px;color:#fff">Para entrar, não use o botão. Ou use. 50%.</p>
+        <button class="btn" id="btn-painel" type="button">Cancelar</button>
+        <a class="btn" id="btn-nao" href="CAPTCHA.html">NÃO clique aqui</a>
+        <button class="btn" id="btn-sim" type="button">Painel do Governo</button>
+    </section>
+
+    <p style="margin:200px 0 0 8px;font-size:48px;color:#008080;background:#008080">
+        SITE EM CONSTRUÇÃO ████████ 99%
+    </p>
+
+    <footer class="caos" id="rodape">
+        <p>Não consegue acessar o painel? <a href="index.html">Clique aqui</a></p>
+        <p>Consegue acessar? <a href="CAPTCHA.html">Clique aqui</a> (não)</p>
+        <p>&copy; 1998–2026 Sangalletti, IF. Todos os direitos reservados e também os esquerdos.</p>
+        <a href="login.html" class="tiny-real">entrar mesmo (5px)</a>
+    </footer>
+
+    <script src="antiux.js"></script>
+    <script>
+        antiUX.foge("#btn-painel, #btn-sim");
+        document.getElementById("btn-painel").onclick = function () {
+            alert("Cancelado com sucesso. Redirecionando para o início.");
+            location.href = "index.html";
+        };
+        antiUX.chance("#btn-sim", "CAPTCHA.html", 0.4);
+        document.getElementById("btn-nao").addEventListener("click", function (e) {
+            if (Math.random() < 0.3) {
+                e.preventDefault();
+                alert("Você clicou. Isso era o que não deveria. Tente o botão Cancelar.");
+            }
+        });
+
+        if (location.search.indexOf("timeout") !== -1) {
+            alert("Sua sessão expirou antes do login. Faça o CAPTCHA de novo.");
+        }
+
+        setInterval(function () {
+            document.title = document.title === " " ? "untitled - Microsoft Internet Explorer" : " ";
+        }, 600);
+    </script>
+</body>
+</html>
